@@ -1,16 +1,21 @@
 import pandas as pd
-nome = {'animais':['unicornio','dragão','Fênix','leti'],
-      'sexo': ['trans','hetero top','feminina','hetero top'],
-      'peso': [80,200,65,300],
-      'consumida por dia':[20,40,70,100]}
-df = pd.DataFrame(nome)
-print(df)
 
-medias = df['peso'].mean()
-print('a media dos pesos dos animais é',medias)
+# Dados dos pacientes
+dados_pacientes = {
+    'Nome': ['João', 'Maria', 'Pedro', 'Ana', 'Luiza', 'Carlos', 'Mariana', 'José', 'Laura', 'Paulo'],
+    'Idade': [30, 45, 25, 60, 35, 50, 28, 42, 55, 33],
+    'Sexo': ['M', 'F', 'M', 'F', 'F', 'M', 'F', 'M', 'F', 'M'],
+    'Doença': ['Hipertensão', 'Diabetes', 'Asma', 'Artrite', 'Câncer', 'Obesidade', 'Enxaqueca', 'Hipertensão', 'Depressão', 'Asma']
+}
 
+# Criando o DataFrame
+df_pacientes = pd.DataFrame(dados_pacientes)
 
-zoo_masculino_dataframe = df[df['sexo'] == 'hetero top']
+# Definindo as prioridades
+prioridades = ['Emergência', 'Muito urgente', 'Urgente', 'Pouco urgente', 'Não urgente']
 
-# Exibindo o novo DataFrame
-print(zoo_masculino_dataframe)
+# Atribuindo prioridades aos pacientes de acordo com a ordem predefinida
+df_pacientes['Prioridade'] = pd.Categorical(df_pacientes.index.map(lambda x: prioridades[x % len(prioridades)]))
+
+# Exibindo o DataFrame
+print(df_pacientes)
